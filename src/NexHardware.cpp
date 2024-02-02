@@ -611,8 +611,6 @@ bool Nextion::nexInit(const uint32_t baud)
     dbSerialPrint("Used Nextion baud: ");
     dbSerialPrintln(m_baud);
     sendCommand("bkcmd=3");
-    recvRetCommandFinished();
-    sendCommand("page 0");
     bool ret = recvRetCommandFinished();
     return ret;
 }
