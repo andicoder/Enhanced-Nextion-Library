@@ -56,6 +56,16 @@ bool NexSlider::Get_background_color_bco(uint32_t *number)
     return recvRetNumber(number);
 }
 
+bool NexSlider::Get_background_color_bco1(uint32_t *number)
+{
+    String cmd;
+    cmd += "get ";
+    getObjGlobalPageName(cmd);
+    cmd += ".bco1";
+    sendCommand(cmd.c_str());
+    return recvRetNumber(number);
+}
+
 bool NexSlider::Set_background_color_bco(uint32_t number)
 {
     char buf[10] = {0};
@@ -63,6 +73,19 @@ bool NexSlider::Set_background_color_bco(uint32_t number)
     utoa(number, buf, 10);
     getObjGlobalPageName(cmd);
     cmd += ".bco=";
+    cmd += buf;
+    sendCommand(cmd.c_str());
+
+    return recvRetCommandFinished();
+}
+
+bool NexSlider::Set_background_color_bco1(uint32_t number)
+{
+    char buf[10] = {0};
+    String cmd;
+    utoa(number, buf, 10);
+    getObjGlobalPageName(cmd);
+    cmd += ".bco1=";
     cmd += buf;
     sendCommand(cmd.c_str());
 
